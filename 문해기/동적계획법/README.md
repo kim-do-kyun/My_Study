@@ -56,4 +56,3 @@ for k in range(n-1):
                     distance[j] = distance[i] + graph[i][j]
                     previous[j] = i
 ```
-* ㅇ

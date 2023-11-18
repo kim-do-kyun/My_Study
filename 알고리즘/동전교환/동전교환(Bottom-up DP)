@@ -1,0 +1,13 @@
+def f(coin,money):
+    dp = [0]*(money+1)
+    for m in range(1, money+1):
+        dp[m] = float('inf')    #dp[0] = 0을 설정후 dp[1] 부터 dp[money]까지 inf로 초기화
+        for i in range(len(coin)):
+            if m >= coin[i]: 
+                dp[m] = min(dp[m], 1+dp[m-coin[i]])
+    print(dp)
+    return dp[money]
+
+print(f([5,10],25))
+#dp[m]에는 m원의 거스름돈을 거슬러주는 최소동전수가 저장됨
+#최초 dp[0]=0으로 설정후, 1원부터 money까지의 각 거스름돈 m0에 대해 m원을 거슬러주는 최소동전수를 계산
