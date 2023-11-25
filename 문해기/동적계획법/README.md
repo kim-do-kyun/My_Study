@@ -26,7 +26,7 @@ for i in range(1, n):
                 previous[i] = j
         length[i] = max_length + 1  #자신의 숫자를 길이에 반영
 ```
-
+<br>
 
 ### ◎벨만-포드(Bellman-Ford)알고리즘
 * 다익스트라 최단 경로 알고리즘의 문제점(다익스트라는 그리디알고리즘)
@@ -56,3 +56,29 @@ for k in range(n-1):
                     distance[j] = distance[i] + graph[i][j]
                     previous[j] = i
 ```
+<br>
+
+### ◎서열 정렬(Sequence Alignment)알고리즘 : 편집거리 알고리즘
+* 어느 DNA가 다른 DNA로 변형되는데 얼마나 많은 변이가 필요한가를 계산하는 문제
+  * 변이 : <strong>삽입, 삭제, 대체 </strong>연산
+  * 편집거리(Edit Distance) : 문자열 S를 T로 변환시키는데 필요한 최소의 편집 연산 횟수
+```
+<편집 거리 알고리즘>
+ 2차원 m x n 리스트 E를 첫 번째 행부터 차례로 각 원소에 주변 3개의 해로 계산된 결과 중에서 
+ 최솟값을 저장 이후 return E[m,n]
+ ==총 부분 문제의 수가 리스트 E의 원소 수인 m x n이고, 각 부문제의 해의 최솟값은 O(1)에 구해져 O(mn)의 시간이 걸린다==
+ ```
+ ```
+ <편집 거리 알고리즘 구현>
+for j in range(1, n+1):
+    for i in range(1, m+1):
+        if S[i - 1] == T[j - 1]:
+            alpha = 0
+        else:
+            alpha = 1
+        E[i][j] = min(E[i-1][j]+1, E[i][j-1]+1, E[i-1][j-1]+alpha)
+ ```
+ ▼위의 E[i][j] = min(~~)값을 구할때 고려하는 인덱스들
+|E[i-1][j-1]|E[i-1][j]|
+|--|--|
+|**E[i][j-1]**|**E[i][j]**|
