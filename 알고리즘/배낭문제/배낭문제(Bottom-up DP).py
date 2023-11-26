@@ -12,5 +12,5 @@ def f(NumItem, Capacity, w, p):
 # M,w,p = 5, [3,2,2], [100,200,300]
 # print(f(len(w),M,w,p))
 
-# M,w,p = 7, [4,6,4,3,5], [7,13,8,6,12] 백준12865
-# print(f(len(w),M,w,p))
+M,w,p = 7, [4,6,4,3,5], [7,13,8,6,12] 백준12865
+print(f(len(w),M,w,p))
