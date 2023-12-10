@@ -72,3 +72,40 @@ for k in range(n):
       distance[w] = distance[m] + wt
       previous[w] = m 
 ```
+
+<br>
+
+### ◎허프만 코딩
+* 파일 압축 알고리즘
+* 빈도수에 따라서 코드 길이를 가변적으로 부여하면 상당한 압축 효과를 볼 수 있음
+* Prefix-free속성 : a가 010이고 b가 0100이면 010이 0100의 앞부분에 나타나서는 안됨.
+  즉, 한문자의 코드가 다른 문자의 코드의 앞부분(접두부)과 같아선 안됨
+```
+<허프만코딩 알고리즘>
+[1] 압축할 파일을 스캔하여 각 문자의 빈도수를 계산한다
+[2] 각 문자에 대해 문자와 빈도수를 가진 이파리 노드를 만든다
+[3] 빈도수가 가장 적은 두 노드의 부모를 만들어 빈도수의 합을 저장한다
+[4] if 노드가 하나만 남으면:
+        남은 노드를 허프만 트리의 루트로 반환
+    else:
+        자식이 된 노드들을 제외하고 go to [3]
+== (n-1)개의 부모노드를 만들고, 가장 적은 빈도수와 그다음으로 적은 빈도수를 가진 노드를 찾는데 
+최소힙 사용시 O(logn)소요 허프만 트리를 만드는 시간은 O(nlogn)==
+```
+```
+<허프만코딩 알고리즘 구현>
+def huffman_tree(a):
+  h = [[freq, [char, ""]] for char, freq in a]
+  heapify(h)
+  while len(h) > 1:
+    left = heappop(h)
+    right = heappop(h)
+    for code in left[1:]:
+      code[1] = '0' + code[1]
+    for code in right[1:]:
+      code[1] = '1' + code[1]
+    t = [left[0] + right[0]] + left[1:] + right[1:]
+    print(t)
+    heappush(h, t)
+  return h
+```
