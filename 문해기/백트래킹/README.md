@@ -110,3 +110,49 @@ def find_set(i, current_sum, leftover):     #current_sum : 현재까지 포함�
         return True
   return False
 ```
+
+### ◎배낭문제
+* 동적 계획 알고리즘보다 백트래킹으로 푸는게 더 성능이 좋음
+* 깊이우선탐색보다 최선 우선(Best-first)탐색을 하는것이 더 빠르게 해를 찾을 수 있음
+* 노드의 한정값(bound) : 그 노드가 얼마나 해에 가까운지를 알려주는 수치
+```
+<배낭 문제 알고리즘>
+[1] 단위 무게 당 가치를 기준으로 물건들을 감소 순으로 정렬
+[2] 상태 공간 트리의 루트를 만든다
+[3] 물건을 포함하여 자식 노드와 포기한 자식 노드를 만들고 각각 bound를 계산한다
+[4] 상태 공간 트리의 이파리 중에서 가장 큰 bound를 가진 노드를 선택. 만일 남은 이파리들이 현재까지 찾ㅇ느
+가장 큰 가치보다 작은 bound를 갖고 있으면 알고리즘 종료
+[5] go to [3]
+```
+```
+<배낭 문제 구현>
+def promising(i, weight, profit):
+  global maxp
+  if (weight >= K):
+    return False
+  else:
+    j = i+1
+    bound = profit
+    totweight = weight
+    while j < n and totweight + w[j] <= K:
+      totweight += w[j]
+      bound += p[j]
+      j += 1
+    k = j
+    if k<n:
+      bound += (K-totweight)*p[k]/w[k]
+    return bound > maxp
+    
+def knapsackBT(i, profit, weight):
+  global bestset
+  global maxp
+  if(weight <= K and profit > maxp):
+    maxp = profit
+    bestset = include[:]
+    
+  if promising(i, weight, profit):
+    include[i+1] = 1
+    knapsackBT(i+1, profit+p[i+1], weight+w[i+1])
+    include[i+1] = 0
+    knapsackBT(i+1, profit, weight)
+```
