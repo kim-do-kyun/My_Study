@@ -1,3 +1,4 @@
+#알고리즘 수업때 나온 subset Sum과 같은 문제
 def promising(i, current_sum, leftover):    #다음 숫자를 고려해도 되는지 검사
     if i == -1:
         return True
