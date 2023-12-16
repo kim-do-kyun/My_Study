@@ -12,8 +12,8 @@ def coloring(i):
 
     for c in range(K):
         color[i] = c
-        if valid(i):
-            if coloring(i + 1):
+        if valid(i):    #정점 i를 c로 칠해도 되는지 확인을 위해 valid(i)호출
+            if coloring(i + 1):     #다음 점 i+1을 칠하기 위한 순환 호출
                 return True
     return False
 
