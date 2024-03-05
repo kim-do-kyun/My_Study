@@ -2,21 +2,23 @@
 * 데이터베이스
   * 데이터베이스 관리 시스템(DBMS:Database Management System)에 의해 관리되는 데이터의 모임
 * DBMS의 기능
+* **SQL statements : DDL, DML, Query Language**
   * DB 생성 및 스키마 정의 : 데이터 정의 언어(data definition language:DDL)를 사용
   * DB에 대한 질문 및 수정 : 질의어(Query Language) 및 데이터 조작 언어(data manipulation language:DML) 사용
   * 대용량 데이터 저장소 지원 : 장기간 저장 및 효율적 접근 제공
-  * 영구적 DB 저장 : 어떤 오류나 위험도 극복
+  * 영구적 DB 저장 : 어떤 오류나 위험도 극복(back-up을 통해서 DB를 영구적이게 만듬), 삭제를 하지 않는 이상 영원히 존재해야함
   * DB에 대한 다수 사용자들의 동시 사용 : 일관성(consistency)보장
 
 <br>
 
 ### 데이터베이스 관리 시스템(DBMS:DataBase Management System)
-> 특정 목적을 위해서 존재하는 데이터베이스를 다수의 사용자가 동시에 안전하고 효율적으로 사용할 수 있도록 하는 S/W들의 집단
+> 특정 목적을 위해서 존재하는 **데이터베이스**를 **다수**의 사용자가 **동시**에 **안전**하고 **효율적**으로 사용할 수 있도록 하는 S/W들의 집단
 * 영구적인 저장(persistent storage) 
   * » 대용량 데이터의 안전하고 효율적인 영구적 저장 및 관리
 * 프로그램 인터페이스 
   * » 사용자나 프로그램 개발자에게 데이터의 용이한 접근 및 수정 방법 제공
-* 트랜잭션(transactioni)관리 
+* 트랜잭션(transaction)관리 
+  * DBMS에서 일을 할때는 트랙잭션 단위로 실행한다 (DBMS안에서 OS에서의 Process 처럼 돌아감)
   * » 다수의 사용자나 프로세스가 동시에 데이터를 접근하도록 허용
   * » 고립성(isolation), 원자성(atomicity), 지속성(durability), 일관성(consistency) 등의 성질을 만족
 
@@ -24,7 +26,7 @@
 
 ### 초기 데이터베이스 관리 시스템
 * 1960년대 후반에 최초의 사용 DBMS가 등장
-  * 화일 시스템으로부터 발전
+  * 화일 시스템으로부터 발전(DBMS의 뿌리)
   * 여러 종류의 데이터 모델
     * » 계층 모델, 네트워크 모델
   * 고수준 질의 언어를 지원하지 않았음
@@ -35,7 +37,7 @@
 <br>
 
 ### 관계 데이터베이스 시스템
-* 관계 모델(relational model)
+* 관계 모델(relational data model)
   * 1970년 Ted Codd에 의해 제안
   * 데이터를 테이블의 형태로 표현
   * 질의를 고수준 언어로 표현
